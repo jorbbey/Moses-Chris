@@ -1,0 +1,54 @@
+/* Global Stylesheet for Moses Chris Platform */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+  background-color: #FAFAF9; /* stone-50 */
+  color: #0F172A; /* Slate-900 / Charcoal */
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #A8A29E #FAFAF9;
+}
+
+/* Custom fade in page transitions keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Beautiful custom modern dark web scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F5F4; /* stone-100 */
+}
+::-webkit-scrollbar-thumb {
+  background: #A8A29E; /* stone-400 */
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #78716C; /* stone-500 */
+}
+
+/* Print optimizations for printable certificates */
+@media print {
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  header, footer, button, .no-print {
+    display: none !important;
+  }
+}

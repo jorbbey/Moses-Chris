@@ -1,0 +1,6 @@
+{
+  "name": "Moses Chris Platform",
+  "description": "An enterprise-grade premium brand ecosystem for Moses Chris: Author, Epidemiologist, and Consultant. Features Moses Chris Academy (LMS), Appointment Selector, Booking Platform, E-Commerce Store, Digital Resource Hub, and Multi-lingual support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
