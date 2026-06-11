@@ -15,7 +15,7 @@ export interface Product {
 export interface Course {
   id: string;
   title: string;
-  category: "Epidemiology" | "Mental Health" | "Domestic Violence" | "Leadership";
+  category: "Epidemiology" | "Mental Health" | "Domestic Violence" | "Leadership" | "Chain Currency";
   lessonsCount: number;
   duration: string;
   enrolled: boolean;

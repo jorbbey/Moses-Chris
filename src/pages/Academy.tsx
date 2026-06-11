@@ -59,7 +59,7 @@ export default function Academy() {
   // Tabs for main Academy view vs Student Dashboard view
   const [academyTab, setAcademyTab] = useState<"catalog" | "dashboard" | "zoom">("catalog");
 
-  const categories = ["All", "Epidemiology", "Mental Health", "Domestic Violence"];
+  const categories = ["All", "Chain Currency", "Epidemiology", "Mental Health", "Domestic Violence"];
 
   // Filter courses
   const filteredCourses = courses.filter((course) => {
@@ -434,41 +434,73 @@ export default function Academy() {
 
                     {/* Active lesson screen player */}
                     <Box p="6">
-                      {activeLesson ? (
-                        <Box bg="navy.50" p="5" borderRadius="xs" border="1px solid" borderColor="navy.100" mb="6" textAlign="left">
-                          <Flex justify="space-between" align="center" mb="3">
-                            <HStack spaceX="2">
-                              {activeLesson.type === "video" ? <Video size={16} className="text-teal-600" /> : <FileText size={16} className="text-teal-600" />}
-                              <Text fontSize="xs" fontWeight="bold" color="navy.800">Active Lesson: {activeLesson.title}</Text>
-                            </HStack>
-                            <Badge bg="teal.600" color="white" size="sm" borderRadius="xs">{activeLesson.duration}</Badge>
-                          </Flex>
-                          
-                          {/* Animated Player or Content container */}
-                          <Box h="180px" bg="navy.900" borderRadius="xs" mb="4" display="flex" alignItems="center" justifyContent="center" position="relative" overflow="hidden">
-                            {activeLesson.type === "video" ? (
-                              <video src={activeLesson.mediaUrl} controls className="w-full h-full object-cover" />
-                            ) : (
-                              <VStack spaceY="2" color="white">
-                                <FileText size={40} className="text-amber-500" />
-                                <Text fontSize="xs" fontWeight="bold">PDF Resource Worksheet Active</Text>
-                                <Button size="xs" bg="teal.600" color="white" as="a" href="#" download borderRadius="xs">Download Study PDF</Button>
-                              </VStack>
-                            )}
-                          </Box>
+                      {activeLesson ? (() => {
+                        const currentUrl = activeLesson.mediaUrl;
 
-                          <Flex justify="space-between" align="center">
-                            <Text fontSize="10px" color="navy.500">Complete this lesson to advance your progress meter.</Text>
-                            {activeLesson.completed ? (
-                              <Badge bg="teal.600" color="white" size="xs" borderRadius="xs">✓ Completed</Badge>
-                            ) : (
-                              <Button size="xs" bg="teal.600" color="white" _hover={{ bg: "teal.700" }} onClick={() => handleLessonComplete(activeLesson.id)} borderRadius="xs">
-                                Mark Lesson as Completed
-                              </Button>
-                            )}
-                          </Flex>
-                        </Box>
-                      ) : (
+                        const regMath = currentUrl.match(/(?:vimeo\.com\/video\/|vimeo\.com\/|video\/)(\d+)/) || currentUrl.match(/^(\d+)$/);
+                        const vimeoEmbedUrl = regMath && regMath[1] 
+                          ? `https://player.vimeo.com/video/${regMath[1]}?autoplay=0&byline=0&portrait=0&badge=0` 
+                          : null;
+
+                        return (
+                          <Box bg="navy.50" p="5" borderRadius="xs" border="1px solid" borderColor="navy.100" mb="6" textAlign="left">
+                            <Flex justify="space-between" align="center" mb="3">
+                              <HStack spaceX="2">
+                                {activeLesson.type === "video" ? <Video size={16} className="text-teal-600" /> : <FileText size={16} className="text-teal-600" />}
+                                <Text fontSize="xs" fontWeight="bold" color="navy.800">Active Lesson: {activeLesson.title}</Text>
+                              </HStack>
+                              <Badge bg="teal.600" color="white" size="sm" borderRadius="xs">{activeLesson.duration}</Badge>
+                            </Flex>
+                            
+                            {/* Animated Player or Content container */}
+                            <Box 
+                              w="full" 
+                              style={{ aspectRatio: "16/9" }} 
+                              bg="black" 
+                              borderRadius="xs" 
+                              mb="4" 
+                              display="flex" 
+                              alignItems="center" 
+                              justifyContent="center" 
+                              position="relative" 
+                              overflow="hidden"
+                            >
+                              {activeLesson.type === "video" ? (
+                                vimeoEmbedUrl ? (
+                                  <iframe
+                                    src={vimeoEmbedUrl}
+                                    width="100%"
+                                    height="100%"
+                                    frameBorder="0"
+                                    allow="autoplay; fullscreen; picture-in-picture"
+                                    allowFullScreen
+                                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                                  />
+                                ) : (
+                                  <video src={currentUrl} controls className="w-full h-full object-cover" />
+                                )
+                              ) : (
+                                <VStack spaceY="2" color="white">
+                                  <FileText size={40} className="text-amber-500" />
+                                  <Text fontSize="xs" fontWeight="bold">PDF Resource Worksheet Active</Text>
+                                  <Button size="xs" bg="teal.600" color="white" as="a" href="#" download borderRadius="xs">Download Study PDF</Button>
+                                </VStack>
+                              )}
+                            </Box>
+
+                            <Flex justify="space-between" align="center">
+                              <Text fontSize="10px" color="navy.500">Complete this lesson to advance your progress meter.</Text>
+                              {activeLesson.completed ? (
+                                <Badge bg="teal.600" color="white" size="xs" borderRadius="xs">✓ Completed</Badge>
+                              ) : (
+                                <Button size="xs" bg="teal.600" color="white" _hover={{ bg: "teal.700" }} onClick={() => handleLessonComplete(activeLesson.id)} borderRadius="xs">
+                                  Mark Lesson as Completed
+                                </Button>
+                              )}
+                            </Flex>
+                          </Box>
+                        );
+                      })() : (
                         <Box py="6" textAlign="center">
                           <Text fontSize="xs" color="navy.500">Select a scheduled lesson below to start study.</Text>
                         </Box>

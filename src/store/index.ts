@@ -95,6 +95,38 @@ const initialProducts: Product[] = [
 
 const initialCourses: Course[] = [
   {
+    id: "course-chain-currency",
+    title: "Chain Currency Resiliency: Building Wellness & Empowerment",
+    category: "Chain Currency",
+    lessonsCount: 11,
+    duration: "1 hour 45 mins",
+    enrolled: true,
+    progress: 0,
+    instructorName: "Moses Chris",
+    instructorTitle: "Author of Renewal & Resiliency Consultant",
+    instructorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150",
+    summary: "Launch your mastery in Chain Currency, the ground-breaking paradigm published in Chris S. Moses' acclaimed novel 'Renewal: A Story of Survival and Self-Discovery'. Explore how to empower human connections, bypass systemic trauma loops, and establish mutual trust nodes.",
+    lessons: [
+      { id: "cc-l1", title: "Part I: Introducing Chain Currency (Vimeo Explainer 1)", duration: "15 mins", completed: false, type: "video", mediaUrl: "https://vimeo.com/1200283782?fl=tl&fe=ec" },
+      { id: "cc-l2", title: "Part II: Dynamic Resiliency Alignment (Vimeo Explainer 2)", duration: "12 mins", completed: false, type: "video", mediaUrl: "https://vimeo.com/1200283783?fl=tl&fe=ec" },
+      { id: "cc-l3", title: "Micro-breakdown 01: Trust Verification (10-sec Clip)", duration: "10 secs", completed: false, type: "video", mediaUrl: "https://vimeo.com/1200283753?fl=tl&fe=ec" },
+      { id: "cc-l4", title: "Micro-breakdown 02: Narrative Currency Loops (10-sec Clip)", duration: "10 secs", completed: false, type: "video", mediaUrl: "https://vimeo.com/1200283723?fl=tl&fe=ec" },
+      { id: "cc-l5", title: "Micro-breakdown 03: Mutual Healing Exchange (10-sec Clip)", duration: "10 secs", completed: false, type: "video", mediaUrl: "https://vimeo.com/1200283722?fl=tl&fe=ec" },
+      { id: "cc-l6", title: "Micro-breakdown 04: The Security Chain Node (10-sec Clip)", duration: "10 secs", completed: false, type: "video", mediaUrl: "https://vimeo.com/1200283720?fl=tl&fe=ec" },
+      { id: "cc-l7", title: "Micro-breakdown 05: Distributive Dignity Index (10-sec Clip)", duration: "10 secs", completed: false, type: "video", mediaUrl: "https://vimeo.com/1200283721?fl=tl&fe=ec1" },
+      { id: "cc-l8", title: "Micro-breakdown 06: Ripple Positivity Acceleration (10-sec Clip)", duration: "10 secs", completed: false, type: "video", mediaUrl: "https://vimeo.com/1200283748?fl=tl&fe=ec" },
+      { id: "cc-l9", title: "Micro-breakdown 07: Community Protective Safekeeping (10-sec Clip)", duration: "10 secs", completed: false, type: "video", mediaUrl: "https://vimeo.com/1200283749?fl=tl&fe=ec" },
+      { id: "cc-l10", title: "Micro-breakdown 08: Rebuilding Res resilient Pathways (10-sec Clip)", duration: "10 secs", completed: false, type: "video", mediaUrl: "https://vimeo.com/1200283751?fl=tl&fe=ec" },
+      { id: "cc-l11", title: "Micro-breakdown 09: Global Mutual Trust Networks (10-sec Clip)", duration: "10 secs", completed: false, type: "video", mediaUrl: "https://vimeo.com/1200283778?fl=tl&fe=ec" }
+    ],
+    quizzes: [
+      { id: "cc-q1", question: "What represents the foundational premise of Chain Currency in 'Renewal: A Story of Survival and Self-Discovery'?", options: ["Financial tokens of crypto exchange", "An emotional, collaborative network of human trust and mutual resiliency", "A central regulatory bank system for social credits", "A physical block of resource assets"], correctIndex: 1 },
+      { id: "cc-q2", question: "In the 10-second micro-breakdown micro-lessons, how are emotional resource loops unlocked?", options: ["Through private financial accumulation", "Through human empathy, shared wellness networks, and deep narrative feedback", "By restricting community communications", "By deploying physical command isolation centers"], correctIndex: 1 }
+    ],
+    quizCompleted: false,
+    certificateEarned: false
+  },
+  {
     id: "course-1",
     title: "Epidemic Surveillance & Incident Command System (ICS)",
     category: "Epidemiology",
