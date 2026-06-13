@@ -14,7 +14,8 @@ import {
 } from "@chakra-ui/react";
 import { Menu, X, ShoppingCart, User, Award } from "lucide-react";
 import { usePlatformStore } from "../store";
-import mosesChrisLogo from "../assets/Moses_Chris_trans.png";
+// import mosesChrisLogo from "../assets/Moses_Chris_trans.png";
+import mosesChrisLogo from "../assets/moseschrislogo-trans.png"; 
 
 export default function Header() {
   const { t, i18n } = useTranslation();
@@ -70,7 +71,7 @@ export default function Header() {
               <VStack align="flex-start" gap="1">
                 <Box
                   w="24"
-                  h="12"
+                  h="10"
                   display="flex"
                   alignItems="center"
                   justifyContent="flex-start"
