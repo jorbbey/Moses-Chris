@@ -22,6 +22,7 @@ import {
   HelpCircle,
   Clock,
   CheckCircle,
+  Dna,
 } from "lucide-react";
 
 export default function Services() {
@@ -235,6 +236,198 @@ export default function Services() {
             </SimpleGrid>
           ))}
         </VStack>
+      </Box>
+
+      {/* Cell and Gene Therapy Services Section */}
+      <Box bg="white" py="16" borderTop="1px solid" borderColor="navy.200">
+        <Box maxW="90%" mx="auto" px={{ base: "4", md: "0" }}>
+          
+          {/* Header */}
+          <VStack align="flex-start" mb="12" spaceY="3">
+            <HStack spaceX="2" align="center">
+              <Box p="2" bg="teal.50" borderRadius="xs" color="teal.600">
+                <Dna size={24} />
+              </Box>
+              <Badge bg="teal.50" color="teal.750" fontWeight="extrabold" borderRadius="xs" letterSpacing="wider" px="2" py="0.5">
+                ADVANCED THERAPEUTICS
+              </Badge>
+            </HStack>
+            
+            <Heading fontSize={{ base: "2xl", md: "4xl" }} color="navy.800" fontWeight="normal" fontFamily="heading" mt="2">
+              Cell and Gene Therapy Services
+            </Heading>
+            
+            <Text fontSize="md" color="navy.500" maxW="850px" lineHeight="relaxed">
+              As a leading expert in cell and gene therapy, our team offers a comprehensive range of services to support the development and implementation of innovative treatments. Our goal is to help clients navigate the complex landscape of cell and gene therapy, from concept to commercialization.
+            </Text>
+          </VStack>
+
+          {/* Core Services, Expertise, Benefits Grid */}
+          <SimpleGrid columns={{ base: 1, lg: 12 }} gap="12" alignItems="flex-start">
+            
+            {/* Left Hand: Services Menu */}
+            <Box gridColumn={{ base: "1", lg: "span 7" }}>
+              <VStack align="stretch" spaceY="6">
+                <Heading fontSize="xl" fontWeight="normal" fontFamily="heading" color="navy.800" pb="2" borderBottom="2px solid" borderColor="teal.500" width="max-content">
+                  Services
+                </Heading>
+                
+                <VStack align="stretch" spaceY="4">
+                  <Box p="4" bg="navy.50" borderRadius="xs" borderLeft="4px solid" borderColor="teal.500">
+                    <Text fontSize="sm" fontWeight="bold" color="navy.800" mb="1">Strategic Consulting</Text>
+                    <Text fontSize="xs" color="navy.500" lineHeight="relaxed">Our team provides expert guidance on the development and implementation of cell and gene therapy products, including market analysis, regulatory strategy, and commercialization planning.</Text>
+                  </Box>
+
+                  <Box p="4" bg="navy.50" borderRadius="xs" borderLeft="4px solid" borderColor="teal.500">
+                    <Text fontSize="sm" fontWeight="bold" color="navy.800" mb="1">Preclinical Development</Text>
+                    <Text fontSize="xs" color="navy.500" lineHeight="relaxed">We offer preclinical development services, including cell line development, vector design, and in vitro and in vivo testing.</Text>
+                  </Box>
+
+                  <Box p="4" bg="navy.50" borderRadius="xs" borderLeft="4px solid" borderColor="teal.500">
+                    <Text fontSize="sm" fontWeight="bold" color="navy.800" mb="1">Clinical Trial Management</Text>
+                    <Text fontSize="xs" color="navy.500" lineHeight="relaxed">Our team provides clinical trial management services, including study design, site selection, patient recruitment, and data management.</Text>
+                  </Box>
+
+                  <Box p="4" bg="navy.50" borderRadius="xs" borderLeft="4px solid" borderColor="teal.500">
+                    <Text fontSize="sm" fontWeight="bold" color="navy.800" mb="1">Regulatory Affairs</Text>
+                    <Text fontSize="xs" color="navy.500" lineHeight="relaxed">We offer regulatory affairs services, including IND and BLA submission, FDA interaction, and compliance management.</Text>
+                  </Box>
+
+                  <Box p="4" bg="navy.50" borderRadius="xs" borderLeft="4px solid" borderColor="teal.500">
+                    <Text fontSize="sm" fontWeight="bold" color="navy.800" mb="1">Manufacturing and Quality Control</Text>
+                    <Text fontSize="xs" color="navy.500" lineHeight="relaxed">Our team provides manufacturing and quality control services, including process development, scale-up, and quality assurance.</Text>
+                  </Box>
+
+                  <Box p="4" bg="navy.50" borderRadius="xs" borderLeft="4px solid" borderColor="teal.500">
+                    <Text fontSize="sm" fontWeight="bold" color="navy.800" mb="1">Cell and Gene Therapy Product Development</Text>
+                    <Text fontSize="xs" color="navy.500" lineHeight="relaxed">We offer cell and gene therapy product development services, including product design, development, and testing.</Text>
+                  </Box>
+
+                  <Box p="4" bg="navy.50" borderRadius="xs" borderLeft="4px solid" borderColor="teal.500">
+                    <Text fontSize="sm" fontWeight="bold" color="navy.800" mb="1">Training and Education</Text>
+                    <Text fontSize="xs" color="navy.500" lineHeight="relaxed">Our team provides training and education services, including workshops, webinars, and online courses on cell and gene therapy.</Text>
+                  </Box>
+                </VStack>
+              </VStack>
+            </Box>
+
+            {/* Right Hand: Expertise & Benefits Stack */}
+            <Box gridColumn={{ base: "1", lg: "span 5" }}>
+              <VStack align="stretch" spaceY="10">
+                
+                {/* Expertise Block */}
+                <Box>
+                  <Heading fontSize="xl" fontWeight="normal" fontFamily="heading" color="navy.800" pb="2" mb="5" borderBottom="2px solid" borderColor="teal.500" width="max-content">
+                    Expertise
+                  </Heading>
+                  <VStack align="stretch" spaceY="4">
+                    <Box borderWidth="1px" borderColor="navy.200" p="4" borderRadius="xs">
+                      <HStack spaceX="2" mb="1" align="flex-start">
+                        <CheckCircle size={16} className="text-teal-600 shrink-0 mt-0.5" />
+                        <Text fontSize="sm" fontWeight="bold" color="navy.800">Cell Therapy</Text>
+                      </HStack>
+                      <Text fontSize="xs" color="navy.500" pl="6" lineHeight="relaxed">
+                        Our team has expertise in cell therapy, including autologous and allogeneic cell therapies, and cell-based immunotherapies.
+                      </Text>
+                    </Box>
+
+                    <Box borderWidth="1px" borderColor="navy.200" p="4" borderRadius="xs">
+                      <HStack spaceX="2" mb="1" align="flex-start">
+                        <CheckCircle size={16} className="text-teal-600 shrink-0 mt-0.5" />
+                        <Text fontSize="sm" fontWeight="bold" color="navy.800">Gene Therapy</Text>
+                      </HStack>
+                      <Text fontSize="xs" color="navy.500" pl="6" lineHeight="relaxed">
+                        We have expertise in gene therapy, including viral and non-viral gene delivery, and gene editing technologies such as CRISPR/Cas9.
+                      </Text>
+                    </Box>
+
+                    <Box borderWidth="1px" borderColor="navy.200" p="4" borderRadius="xs">
+                      <HStack spaceX="2" mb="1" align="flex-start">
+                        <CheckCircle size={16} className="text-teal-600 shrink-0 mt-0.5" />
+                        <Text fontSize="sm" fontWeight="bold" color="navy.800">Regenerative Medicine</Text>
+                      </HStack>
+                      <Text fontSize="xs" color="navy.500" pl="6" lineHeight="relaxed">
+                        Our team has expertise in regenerative medicine, including tissue engineering, biomaterials, and stem cell therapies.
+                      </Text>
+                    </Box>
+                  </VStack>
+                </Box>
+
+                {/* Benefits Block */}
+                <Box>
+                  <Heading fontSize="xl" fontWeight="normal" fontFamily="heading" color="navy.800" pb="2" mb="5" borderBottom="2px solid" borderColor="teal.500" width="max-content">
+                    Benefits
+                  </Heading>
+                  <VStack align="stretch" spaceY="4">
+                    <Box borderWidth="1px" borderColor="navy.200" p="4" borderRadius="xs" bg="teal.50/10">
+                      <HStack spaceX="2" mb="1" align="center">
+                        <Badge bg="teal.600" color="white" fontSize="9px" borderRadius="xs">INNOVATIVE</Badge>
+                        <Text fontSize="sm" fontWeight="bold" color="navy.800">Innovative Solutions</Text>
+                      </HStack>
+                      <Text fontSize="xs" color="navy.500" pl="1" lineHeight="relaxed">
+                        Our team provides innovative solutions to complex problems in cell and gene therapy.
+                      </Text>
+                    </Box>
+
+                    <Box borderWidth="1px" borderColor="navy.200" p="4" borderRadius="xs" bg="teal.50/10">
+                      <HStack spaceX="2" mb="1" align="center">
+                        <Badge bg="teal.600" color="white" fontSize="9px" borderRadius="xs">EXPERT</Badge>
+                        <Text fontSize="sm" fontWeight="bold" color="navy.800">Expert Guidance</Text>
+                      </HStack>
+                      <Text fontSize="xs" color="navy.500" pl="1" lineHeight="relaxed">
+                        We offer expert guidance and support throughout the development and commercialization process.
+                      </Text>
+                    </Box>
+
+                    <Box borderWidth="1px" borderColor="navy.200" p="4" borderRadius="xs" bg="teal.50/10">
+                      <HStack spaceX="2" mb="1" align="center">
+                        <Badge bg="teal.600" color="white" fontSize="9px" borderRadius="xs">COMPLIANT</Badge>
+                        <Text fontSize="sm" fontWeight="bold" color="navy.800">Regulatory Compliance</Text>
+                      </HStack>
+                      <Text fontSize="xs" color="navy.500" pl="1" lineHeight="relaxed">
+                        Our team ensures regulatory compliance and helps clients navigate the complex regulatory landscape.
+                      </Text>
+                    </Box>
+
+                    <Box borderWidth="1px" borderColor="navy.200" p="4" borderRadius="xs" bg="teal.50/10">
+                      <HStack spaceX="2" mb="1" align="center">
+                        <Badge bg="teal.600" color="white" fontSize="9px" borderRadius="xs">EFFICIENT</Badge>
+                        <Text fontSize="sm" fontWeight="bold" color="navy.800">Cost-Effective Solutions</Text>
+                      </HStack>
+                      <Text fontSize="xs" color="navy.500" pl="1" lineHeight="relaxed">
+                        We provide cost-effective solutions that help clients achieve their goals without breaking the bank.
+                      </Text>
+                    </Box>
+                  </VStack>
+                </Box>
+
+              </VStack>
+            </Box>
+
+          </SimpleGrid>
+
+          {/* Get In Touch CTA Banner */}
+          <Box mt="12" p="8" bg="navy.50" borderRadius="xs" border="1px solid" borderColor="navy.200">
+            <SimpleGrid columns={{ base: 1, md: 12 }} gap="6" alignItems="center">
+              <Box gridColumn={{ base: "1", md: "span 9" }}>
+                <Heading fontSize="lg" fontWeight="normal" fontFamily="heading" color="navy.800" mb="2">
+                  Get in Touch
+                </Heading>
+                <Text fontSize="xs" color="navy.500" lineHeight="relaxed">
+                  If you’re interested in learning more about our cell and gene therapy services, please don’t hesitate to get in touch. We’d be happy to discuss your needs and provide a customized solution.
+                </Text>
+              </Box>
+              <Box gridColumn={{ base: "1", md: "span 3" }} textAlign={{ base: "left", md: "right" }}>
+                <Link to="/contact">
+                  <Button size="sm" bg="teal.600" color="white" _hover={{ bg: "teal.700" }} borderRadius="xs" width="full">
+                    Contact Our Specialist
+                  </Button>
+                </Link>
+              </Box>
+            </SimpleGrid>
+          </Box>
+
+        </Box>
       </Box>
 
       {/* Frequently Asked Questions */}
