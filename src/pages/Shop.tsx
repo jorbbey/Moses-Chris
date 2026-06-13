@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { usePlatformStore } from "../store";
 import { Product } from "../types";
+import { BookCover } from "../components/BookCover";
 import {
   Box,
   Flex,
@@ -49,6 +50,7 @@ export default function Shop() {
 
   // Selected product to inspect details
   const [detailedProductId, setDetailedProductId] = useState<string | null>(null);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
   // Checkout states
   const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
@@ -237,7 +239,7 @@ export default function Shop() {
                       borderBottom="1px solid"
                       borderColor="navy.100"
                     >
-                      <Image src={p.image} alt={p.title} maxH="170px" objectFit="contain" />
+                      <BookCover id={p.id} title={p.title} image={p.image} author={p.author} size="md" />
                       
                       {/* Wishlist toggle */}
                       <IconButton
@@ -285,7 +287,7 @@ export default function Shop() {
                           <Text fontSize="md" fontWeight="bold" color="teal.700">
                             ${p.price}
                           </Text>
-                          <Button size="xs" variant="ghost" color="navy.800" _hover={{ color: "teal.600" }} onClick={() => setDetailedProductId(p.id)}>
+                          <Button size="xs" variant="ghost" color="navy.800" _hover={{ color: "teal.600" }} onClick={() => { setDetailedProductId(p.id); setIsDescriptionExpanded(false); }}>
                             Learn Details
                           </Button>
                         </Flex>
@@ -307,7 +309,7 @@ export default function Shop() {
           <Box maxW="900px" mx="auto" p="6" bg="white" borderRadius="xs" border="1px solid" borderColor="navy.200" textAlign="left">
             <SimpleGrid columns={{ base: 1, md: 10 }} gap="8" align="center">
               <Box gridColumn={{ base: "1", md: "span 4" }} h="320px" bg="navy.50" borderRadius="xs" display="flex" align="center" justify="center">
-                <Image src={detailedProduct.image} alt={detailedProduct.title} maxH="280px" objectFit="contain" />
+                <BookCover id={detailedProduct.id} title={detailedProduct.title} image={detailedProduct.image} author={detailedProduct.author} size="lg" />
               </Box>
 
               <Box gridColumn={{ base: "1", md: "span 6" }}>
@@ -327,9 +329,52 @@ export default function Shop() {
                 </Heading>
                 <Text fontSize="xs" color="navy.400" mb="4">By {detailedProduct.author} (Registered Therapist / Epidemiologist)</Text>
                 
-                <Text fontSize="xs" color="navy.500" lineHeight="tall" mb="6">
-                  {detailedProduct.summary}
-                </Text>
+                <Box mb="6">
+                  {(() => {
+                    const paragraphs = detailedProduct.descriptionParagraphs || [detailedProduct.summary];
+                    const count = paragraphs.length;
+                    const showToggle = count > 3;
+                    const displayed = (showToggle && !isDescriptionExpanded) ? paragraphs.slice(0, 3) : paragraphs;
+
+                    return (
+                      <VStack align="stretch" spaceY="3">
+                        {displayed.map((p, idx) => (
+                          <Text key={idx} fontSize="xs" color="navy.600" lineHeight="relaxed">
+                            {p}
+                          </Text>
+                        ))}
+                        {showToggle && (
+                          <Button
+                            size="xs"
+                            variant="link"
+                            color="teal.600"
+                            fontWeight="bold"
+                            onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                            alignSelf="flex-start"
+                            py="1"
+                            _hover={{ textDecoration: "underline", color: "teal.700" }}
+                          >
+                            {isDescriptionExpanded ? "Read Less ▲" : `Read More ▼ (+${count - 3} paragraphs)`}
+                          </Button>
+                        )}
+                      </VStack>
+                    );
+                  })()}
+                </Box>
+
+                {detailedProduct.productDetails && detailedProduct.productDetails.length > 0 && (
+                  <Box mb="6" p="3" bg="navy.50" borderRadius="xs" border="1px solid" borderColor="navy.150">
+                    <Text fontSize="10px" fontWeight="bold" color="navy.700" mb="2" uppercase="true">Publication Specifications</Text>
+                    <SimpleGrid columns={{ base: 1, sm: 2 }} gap="2">
+                      {detailedProduct.productDetails.map((detail) => (
+                        <HStack key={detail.label} justify="space-between" fontSize="10px" borderBottom="1px dashed" borderColor="navy.200" pb="1">
+                          <Text color="navy.500" fontWeight="medium">{detail.label}:</Text>
+                          <Text color="navy.800" fontWeight="bold" textAlign="right">{detail.value}</Text>
+                        </HStack>
+                      ))}
+                    </SimpleGrid>
+                  </Box>
+                )}
 
                 <Box mb="6">
                   <Text fontSize="10px" fontWeight="bold" color="navy.400" mb="2" uppercase="true">Included Features</Text>
@@ -394,7 +439,7 @@ export default function Shop() {
                   <Box key={item.product.id} p="4" bg="white" borderRadius="xs" border="1px solid" borderColor="navy.200">
                     <Flex justify="space-between" align="center" wrap="wrap" gap="4">
                       <HStack spaceX="4" align="center">
-                        <Image src={item.product.image} w="40px" h="45px" objectFit="contain" />
+                        <BookCover id={item.product.id} title={item.product.title} image={item.product.image} author={item.product.author} size="xs" />
                         <Box>
                           <Heading fontSize="xs" fontWeight="bold" color="navy.800" lineClamp="1">
                             {item.product.title}
@@ -449,50 +494,124 @@ export default function Shop() {
               </VStack>
             )}
 
-            {/* Simulated Payment Gateway Selection Dialog inside the flow */}
-            {checkoutModalOpen && (
-              <Box mt="8" p="6" bg="white" borderRadius="xs" border="1px solid" borderColor="navy.200">
-                <HStack spaceX="2" mb="3">
-                  <Lock size={16} className="text-teal-600" />
-                  <Text fontSize="xs" fontWeight="bold" color="navy.800" uppercase="true">Symmetric Encryption Checkout Gateways</Text>
-                </HStack>
-                <Text fontSize="10px" color="navy.500" mb="4">
-                  Select your favored payment gateway command. Payments are processed in secure sandboxed test scopes.
-                </Text>
+            {/* Simulated Payment Gateway / Amazon Checkout Redirection Dialog inside the flow */}
+            {checkoutModalOpen && (() => {
+              const amazonPublicationsInCart = cart.filter(item => !!item.product.amazonKindleLink);
+              const localDigitalInCart = cart.filter(item => !item.product.amazonKindleLink);
+              const hasAmazonPublications = amazonPublicationsInCart.length > 0;
+              const hasLocalDigital = localDigitalInCart.length > 0;
 
-                <SimpleGrid columns="4" gap="2" mb="6">
-                  {["stripe", "paypal", "flutterwave", "paystack"].map((gw) => (
-                    <Button
-                      key={gw}
-                      size="xs"
-                      variant={chosenGateway === gw ? "solid" : "outline"}
-                      bg={chosenGateway === gw ? "teal.600" : "white"}
-                      color={chosenGateway === gw ? "white" : "navy.800"}
-                      onClick={() => setChosenGateway(gw as any)}
-                      borderColor="navy.200"
-                      borderRadius="xs"
-                      _hover={{ bg: "navy.50" }}
-                    >
-                      {gw.toUpperCase()}
-                    </Button>
-                  ))}
-                </SimpleGrid>
+              return (
+                <Box mt="8" p="6" bg="white" borderRadius="xs" border="1px solid" borderColor="navy.200">
+                  {hasAmazonPublications && (
+                    <Box mb={hasLocalDigital ? "6" : "0"}>
+                      <HStack spaceX="2" mb="3">
+                        <ExternalLink size={16} className="text-amber-500" />
+                        <Heading fontSize="xs" fontWeight="bold" color="navy.800" uppercase="true">Amazon secure checkout</Heading>
+                      </HStack>
+                      <Text fontSize="10px" color="navy.500" mb="4">
+                        The printed or Kindle editions in your bag are secured and fulfilled directly through Amazon. Select a title below to view and complete your safe purchase there:
+                      </Text>
 
-                {purchaseComplete ? (
-                  <Box p="4" bg="teal.50" borderRadius="xs" display="flex" align="center" mb="2" border="1px solid" borderColor="teal.300">
-                    <CheckCircle size={16} className="text-teal-600 mr-2" />
-                    <Box pl="1">
-                      <Text fontSize="xs" fontWeight="bold" color="teal.800">Payment Processed Successfully!</Text>
-                      <Text fontSize="9px" color="teal.700">Digital publications were unlocked instantly under your account profile.</Text>
+                      <VStack align="stretch" spaceY="3" mb="4">
+                        {amazonPublicationsInCart.map((item) => (
+                          <Box key={item.product.id} p="3" bg="amber.50" border="1px solid" borderColor="amber.200" borderRadius="xs">
+                            <Flex justify="space-between" align="center" wrap="wrap" gap="2">
+                              <Box textAlign="left">
+                                <Text fontSize="11px" fontWeight="bold" color="navy.800">{item.product.title}</Text>
+                                <Text fontSize="9px" color="navy.500">Fulfillment: Amazon Secure Dispatch • Qty: {item.quantity}</Text>
+                              </Box>
+                              <Button
+                                as="a"
+                                href={item.product.amazonKindleLink}
+                                target="_blank"
+                                rel="noreferrer"
+                                size="xs"
+                                bg="orange.500"
+                                _hover={{ bg: "orange.650" }}
+                                color="white"
+                                fontWeight="bold"
+                                borderRadius="xs"
+                                rightIcon={<ExternalLink size={10} />}
+                              >
+                                Buy on Amazon
+                              </Button>
+                            </Flex>
+                          </Box>
+                        ))}
+                      </VStack>
+
+                      <Button
+                        size="xs"
+                        bg="navy.900"
+                        color="white"
+                        _hover={{ bg: "navy.800" }}
+                        w="full"
+                        onClick={() => {
+                          // Open all Amazon links in tabs
+                          amazonPublicationsInCart.forEach((item) => {
+                            if (item.product.amazonKindleLink) {
+                              window.open(item.product.amazonKindleLink, "_blank");
+                            }
+                            removeCartItem(item.product.id);
+                          });
+                          if (!hasLocalDigital) {
+                            setCheckoutModalOpen(false);
+                          }
+                        }}
+                        borderRadius="xs"
+                      >
+                        Launch Selected Books On Amazon & Clear from Cart
+                      </Button>
                     </Box>
-                  </Box>
-                ) : (
-                  <Button size="xs" bg="navy.800" color="white" w="full" leftIcon={<CreditCard size={12} />} onClick={handleCompletePayment} borderRadius="xs" _hover={{ bg: "navy.700" }}>
-                    Submit Test Payment of ${cartSubtotal.toFixed(2)}
-                  </Button>
-                )}
-              </Box>
-            )}
+                  )}
+
+                  {hasLocalDigital && (
+                    <Box borderTop={hasAmazonPublications ? "1px solid" : "none"} borderColor="navy.200" pt={hasAmazonPublications ? "6" : "0"}>
+                      <HStack spaceX="2" mb="3">
+                        <Lock size={16} className="text-teal-600" />
+                        <Text fontSize="xs" fontWeight="bold" color="navy.800" uppercase="true">Symmetric Encryption Checkout Gateways</Text>
+                      </HStack>
+                      <Text fontSize="10px" color="navy.500" mb="4">
+                        Select your favored payment gateway for remaining direct digital downloads. Payments are processed in secure sandboxed test scopes.
+                      </Text>
+
+                      <SimpleGrid columns="4" gap="2" mb="6">
+                        {["stripe", "paypal", "flutterwave", "paystack"].map((gw) => (
+                          <Button
+                            key={gw}
+                            size="xs"
+                            variant={chosenGateway === gw ? "solid" : "outline"}
+                            bg={chosenGateway === gw ? "teal.600" : "white"}
+                            color={chosenGateway === gw ? "white" : "navy.800"}
+                            onClick={() => setChosenGateway(gw as any)}
+                            borderColor="navy.200"
+                            borderRadius="xs"
+                            _hover={{ bg: "navy.50" }}
+                          >
+                            {gw.toUpperCase()}
+                          </Button>
+                        ))}
+                      </SimpleGrid>
+
+                      {purchaseComplete ? (
+                        <Box p="4" bg="teal.50" borderRadius="xs" display="flex" align="center" mb="2" border="1px solid" borderColor="teal.300">
+                          <CheckCircle size={16} className="text-teal-600 mr-2" />
+                          <Box pl="1">
+                            <Text fontSize="xs" fontWeight="bold" color="teal.800">Payment Processed Successfully!</Text>
+                            <Text fontSize="9px" color="teal.700">Digital publications were unlocked instantly under your account profile.</Text>
+                          </Box>
+                        </Box>
+                      ) : (
+                        <Button size="xs" bg="navy.800" color="white" w="full" leftIcon={<CreditCard size={12} />} onClick={handleCompletePayment} borderRadius="xs" _hover={{ bg: "navy.700" }}>
+                          Submit Test Payment of ${localDigitalInCart.reduce((total, item) => total + (item.product.price * item.quantity), 0).toFixed(2)}
+                        </Button>
+                      )}
+                    </Box>
+                  )}
+                </Box>
+              );
+            })()}
           </Box>
         )}
 

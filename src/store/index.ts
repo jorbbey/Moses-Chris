@@ -44,6 +44,64 @@ interface PlatformState {
 // Initial Mock Seed Data reflecting the real Moses Chris portfolio
 const initialProducts: Product[] = [
   {
+    id: "prod-5",
+    title: "Renewal: A Story of Survival and Self-Discovery",
+    category: "book",
+    price: 14.99,
+    rating: 5.0,
+    image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=400",
+    summary: "Renewal is a captivating and inspirational memoir that will touch your heart and ignite your spirit. Follow Dr. Chris Moses as he takes you on an extraordinary voyage of resilience, self-discovery, and the transformative power of embracing one’s true calling.",
+    descriptionParagraphs: [
+      "Renewal is a captivating and inspirational memoir that will touch your heart and ignite your spirit. Follow Dr. Chris Moses as he takes you on an extraordinary voyage of resilience, self-discovery, and the transformative power of embracing one’s true calling.",
+      "After a devastating accident lands him in the hospital, he receives a life-altering diagnosis: cancer. Faced with his own mortality and the collapse of his carefully constructed life, he embarks on an inner journey that leads him to discover the GRACE principles. These five principles became his beacon of hope, guiding him through the darkest days and ultimately leading him to a remarkable recovery.",
+      "Through his heartfelt and raw storytelling, Dr. Chris Moses shares the profound lessons he learned along the way. He recounts how the principles of GRACE helped him not only conquer his illness but also break free from the expectations of others, rediscovering his true self and purpose.",
+      "Now, as a beacon of hope and a passionate advocate for health and well-being, he travels the world, sharing his story and the powerful principles that saved his life. His journey from the brink of despair to a life of meaning and joy is a testament to the incredible strength of the human spirit.",
+      "This book will inspire you to reflect on your own journey, encouraging you to embrace gratitude, cultivate resilience, practice acceptance, foster meaningful connections, and empower yourself to live your best life.",
+      "Renewal is a must-read for anyone seeking to turn life's challenges into opportunities for personal growth and a deeper connection to their true purpose. Prepare to be inspired and motivated by this remarkable story of self-discovery and healing."
+    ],
+    productDetails: [
+      { label: "ASIN", value: "B0D9MX6YYH" },
+      { label: "Publication date", value: "July 16, 2024" },
+      { label: "Language", value: "English" },
+      { label: "File size", value: "620 KB" },
+      { label: "Screen Reader", value: "Supported" },
+      { label: "Print length", value: "150 pages" },
+      { label: "ISBN-13", value: "979-8333145673" },
+      { label: "Customer Reviews", value: "5.0 out of 5 stars (3 ratings)" }
+    ],
+    author: "Chris S. Moses",
+    amazonKindleLink: "https://www.amazon.com/dp/B0D9MX6YYH",
+    features: ["Paperback formatting", "Kindle Digital Edition Included", "GRACE Recovery Blueprint"]
+  },
+  {
+    id: "prod-6",
+    title: "Safeguarding Democracy: A Warning to America and the World",
+    category: "book",
+    price: 16.99,
+    rating: 5.0,
+    image: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&q=80&w=400",
+    summary: "\"Safeguarding Democracy: A Warning to America and the World\" is a timely and urgent exploration of the rising threats to democracy in the 21st century. With authoritarianism on the rise, disinformation rampant, and democratic institutions under siege, this compelling book sheds light on the critical crossroads we face today.",
+    descriptionParagraphs: [
+      "\"Safeguarding Democracy: A Warning to America and the World\" is a timely and urgent exploration of the rising threats to democracy in the 21st century. With authoritarianism on the rise, disinformation rampant, and democratic institutions under siege, this compelling book sheds light on the critical crossroads we face today.",
+      "Drawing on historical precedents, global examples, and current events, it serves as both a call to action and a blueprint for protecting the core values of freedom, justice, and equality.",
+      "Safeguarding Democracy offers a stark warning to America and the world—our future depends on what we do next."
+    ],
+    productDetails: [
+      { label: "ASIN", value: "B0DL6SV9K8" },
+      { label: "Publisher", value: "FireWord Publishing" },
+      { label: "Publication date", value: "October 27, 2024" },
+      { label: "Language", value: "English" },
+      { label: "File size", value: "710 KB" },
+      { label: "Screen Reader", value: "Supported" },
+      { label: "Print length", value: "177 pages" },
+      { label: "ISBN-13", value: "979-8344707884" },
+      { label: "Customer Reviews", value: "5.0 out of 5 stars (2 ratings)" }
+    ],
+    author: "Chris S. Moses",
+    amazonKindleLink: "https://www.amazon.com/dp/B0DL6SV9K8",
+    features: ["Paperback available", "Kindle & Tablet Compatible", "Historical Precedents Guide"]
+  },
+  {
     id: "prod-1",
     title: "Healing Minds, Protecting Lives: A Guide to Public Health Advocacy",
     category: "book",
@@ -51,6 +109,15 @@ const initialProducts: Product[] = [
     rating: 4.9,
     image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=400",
     summary: "A profound overview of modern public health consulting with practical guidelines for epidemiology, outbreak response, and mental wellbeing integration.",
+    descriptionParagraphs: [
+      "A profound overview of modern public health consulting with practical guidelines for epidemiology, outbreak response, and mental wellbeing integration.",
+      "Featuring field strategies derived from emergency command frameworks, community action networks, and clinical insights from trauma-informed therapy panels."
+    ],
+    productDetails: [
+      { label: "Publisher", value: "Clinical Press Group" },
+      { label: "Language", value: "English" },
+      { label: "Pages", value: "210 pages" }
+    ],
     author: "Moses Chris",
     amazonKindleLink: "https://amazon.com",
     features: ["Paperback available", "Kindle Digital Edition", "Comprehensive study cases"]
@@ -63,6 +130,15 @@ const initialProducts: Product[] = [
     rating: 5.0,
     image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=400",
     summary: "Expert insights, psychological models, and legal-physical support strategies for domestic violence victims and frontline responders.",
+    descriptionParagraphs: [
+      "Expert insights, psychological models, and legal-physical support strategies for domestic violence violence victims and frontline responders.",
+      "Equips individuals and local shelter coordinates with actionable templates, safety mapping logs, and interactive workbook pages to secure rapid, self-sustaining autonomy."
+    ],
+    productDetails: [
+      { label: "Format", value: "Digital Interactive PDF" },
+      { label: "File size", value: "3.2 MB" },
+      { label: "Language", value: "English" }
+    ],
     author: "Moses Chris",
     pdfUrl: "/assets/docs/escaping_domestic_abuse_preview.pdf",
     features: ["Instant High-Quality PDF", "Interactive workbook pages", "Resource lists"]
@@ -75,6 +151,15 @@ const initialProducts: Product[] = [
     rating: 4.8,
     image: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&q=80&w=400",
     summary: "A practical textbook detailing pre-natal health frameworks, toddler development indices, and community-driven maternal nourishment models.",
+    descriptionParagraphs: [
+      "A practical textbook detailing pre-natal health frameworks, toddler development indices, and community-driven maternal nourishment models.",
+      "Highly approved by regional public health colleges and state pediatric care institutions."
+    ],
+    productDetails: [
+      { label: "Format", value: "Paperback Format" },
+      { label: "Language", value: "English" },
+      { label: "Publisher", value: "Maternal Wellness Press" }
+    ],
     author: "Moses Chris",
     amazonKindleLink: "https://amazon.com",
     features: ["Paperback format", "Approved by Public Health colleges"]
@@ -87,6 +172,14 @@ const initialProducts: Product[] = [
     rating: 4.7,
     image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&q=80&w=400",
     summary: "SOP guidelines for disaster readiness, active hazard protocols, and neighborhood response coordinates.",
+    descriptionParagraphs: [
+      "SOP guidelines for disaster readiness, active hazard protocols, and neighborhood response coordinates.",
+      "Includes editable checklists, emergency signal layouts, and local cooperative coordination maps."
+    ],
+    productDetails: [
+      { label: "Format", value: "Instant PDF Download" },
+      { label: "Size", value: "1.2 MB" }
+    ],
     author: "Moses Chris",
     pdfUrl: "/assets/docs/emergency_action_blueprint.pdf",
     features: ["Instant PDF", "Editable checklists included"]

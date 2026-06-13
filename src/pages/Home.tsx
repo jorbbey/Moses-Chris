@@ -31,6 +31,7 @@ import {
 import { usePlatformStore } from "../store";
 import mchrisHero1 from "../assets/MChris Hero 1.jpg";
 import mchrisAbout from "../assets/MChris About.jpg";
+import { BookCover } from "../components/BookCover";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -533,19 +534,21 @@ export default function Home() {
 
           <SimpleGrid columns={{ base: 1, md: 3 }} gap="8">
             {featuredBooks.map((product) => (
-              <Box key={product.id} bg="white" borderRadius="xs" p="5" border="1px solid" borderColor="navy.200">
-                <Box h="220px" bg="white" mb="4" borderRadius="xs" overflow="hidden" display="flex" alignItems="center" justifyContent="center" border="1px solid" borderColor="navy.150">
-                  <Image src={product.image} alt={product.title} maxH="200px" objectFit="contain" referrerPolicy="no-referrer" />
+              <Box key={product.id} bg="white" borderRadius="xs" p="5" border="1px solid" borderColor="navy.200" display="flex" flexDirection="column" justifyContent="space-between">
+                <Box>
+                  <Box h="290px" bg="white" mb="4" borderRadius="xs" display="flex" alignItems="center" justifyContent="center" border="1px solid" borderColor="navy.150" py="4">
+                    <BookCover id={product.id} title={product.title} image={product.image} author={product.author} size="lg" />
+                  </Box>
+                  <Badge bg="teal.600" color="white" mb="2" fontSize="9px" borderRadius="xs">
+                    {product.category === "book" ? "PHYSICAL PAPERBACK" : "DIGITAL E-BOOK"}
+                  </Badge>
+                  <Heading fontSize="md" fontWeight="bold" mb="2" color="navy.800" lineClamp="2" minH="44px">
+                    {product.title}
+                  </Heading>
+                  <Text fontSize="xs" color="navy.500" mb="4" lineClamp="3" minH="54px">
+                    {product.summary}
+                  </Text>
                 </Box>
-                <Badge bg="teal.650" color="white" mb="2" fontSize="9px" borderRadius="xs">
-                  {product.category === "book" ? "PHYSICAL PAPERBACK" : "DIGITAL E-BOOK"}
-                </Badge>
-                <Heading fontSize="md" fontWeight="bold" mb="2" color="navy.800" lineClamp="2" minH="44px">
-                  {product.title}
-                </Heading>
-                <Text fontSize="xs" color="navy.500" mb="4" lineClamp="3" minH="54px">
-                  {product.summary}
-                </Text>
                 
                 <HStack justify="space-between" align="center" pt="3" borderTop="1px solid" borderColor="navy.100">
                   <Text fontSize="lg" fontWeight="bold" color="teal.700">

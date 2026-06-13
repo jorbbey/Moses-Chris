@@ -6,6 +6,8 @@ export interface Product {
   rating: number;
   image: string;
   summary: string;
+  descriptionParagraphs?: string[];
+  productDetails?: { label: string; value: string }[];
   author: string;
   amazonKindleLink?: string;
   features?: string[];
