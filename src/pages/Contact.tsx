@@ -46,9 +46,13 @@ export default function Contact() {
     }, 4000);
   };
 
-  const handleWhatsAppInquiry = () => {
-    const text = encodeURIComponent("Hello Moses Chris, I'd like to initiate a secure public health/counselling consultation audit.");
-    window.location.href = `https://wa.me/15557943321?text=${text}`;
+  const whatsappNumber = "15557943321";
+  const whatsappMessage = encodeURIComponent("Hello Moses Chris, I'd like to initiate a secure public health/counselling consultation audit.");
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+  const handleWhatsAppInquiry = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -130,7 +134,23 @@ export default function Contact() {
                     <Text fontSize="10px" color="navy.500">Chat instantly with the outreach coordinators on call regarding booking options or publication purchases.</Text>
                   </Box>
                 </HStack>
-                <Button size="xs" bg="teal.600" color="white" _hover={{ bg: "teal.700" }} borderRadius="xs" w="full" leftIcon={<MessageSquare size={12} />} onClick={handleWhatsAppInquiry}>
+                <Button 
+                  as="a" 
+                  href={whatsappUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  size="xs" 
+                  bg="teal.600" 
+                  color="white" 
+                  _hover={{ bg: "teal.700" }} 
+                  borderRadius="xs" 
+                  w="full" 
+                  leftIcon={<MessageSquare size={12} />} 
+                  onClick={(e) => {
+                    // Ensures link opens cleanly even if default navigation is intercepted
+                    e.stopPropagation();
+                  }}
+                >
                   Launch Interactive WhatsApp Chat
                 </Button>
               </Box>

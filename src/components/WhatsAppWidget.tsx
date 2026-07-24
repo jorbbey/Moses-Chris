@@ -21,14 +21,14 @@ export default function WhatsAppWidget() {
     if (!message.trim()) return;
     const text = encodeURIComponent(`Hello Moses Chris platform team, ${message}`);
     const url = `https://wa.me/${phoneNumber}?text=${text}`;
-    window.open(url, "_blank");
+    window.open(url, "_blank", "noopener,noreferrer");
     setMessage("");
   };
 
   const handleQuickCTA = (topic: string) => {
     const text = encodeURIComponent(`Hello, I'd like to consult on the topic of: ${topic}`);
     const url = `https://wa.me/${phoneNumber}?text=${text}`;
-    window.open(url, "_blank");
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
