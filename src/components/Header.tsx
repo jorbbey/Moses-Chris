@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
@@ -9,19 +9,34 @@ import {
   Button,
   Badge,
   IconButton,
-  NativeSelect,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
-import { Menu, X, ShoppingCart, User, Award } from "lucide-react";
+import { Menu, X, ShoppingCart, User, Globe, ChevronDown } from "lucide-react";
 import { usePlatformStore } from "../store";
-// import mosesChrisLogo from "../assets/Moses_Chris_trans.png";
 import mosesChrisLogo from "../assets/moseschrislogo-trans.png"; 
+import LanguageSelectorModal from "./LanguageSelectorModal";
+import {
+  getStoredLanguage,
+  subscribeLanguageChange,
+  changeApplicationLanguage,
+} from "../services/translator";
+import { getLanguageByCode } from "../data/languages";
 
 export default function Header() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const { cart, courses } = usePlatformStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [langModalOpen, setLangModalOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState<string>(getStoredLanguage());
+
+  useEffect(() => {
+    return subscribeLanguageChange((newLang) => {
+      setCurrentLang(newLang);
+    });
+  }, []);
+
+  const activeLangObj = getLanguageByCode(currentLang);
 
   // Translate navigation label key or fallback
   const getNavLabel = (key: string, customEn: string) => {
@@ -142,26 +157,28 @@ export default function Header() {
 
           {/* User Controls / Utility */}
           <HStack spaceX="3" align="center">
-            {/* Language Switcher */}
-            <Box display="flex" alignItems="center">
-              <NativeSelect.Root size="xs" variant="subtle" maxW="84px">
-                <NativeSelect.Field
-                  bg="navy.50"
-                  color="navy.800"
-                  borderColor="navy.200"
-                  _hover={{ borderColor: "navy.800" }}
-                  value={i18n.language}
-                  onChange={(e) => changeLanguage(e.target.value)}
-                  borderRadius="xs"
-                >
-                  <option value="en" style={{ color: "#0F172A" }}>EN</option>
-                  <option value="fr" style={{ color: "#0F172A" }}>FR</option>
-                  <option value="es" style={{ color: "#0F172A" }}>ES</option>
-                  <option value="pt" style={{ color: "#0F172A" }}>PT</option>
-                  <option value="de" style={{ color: "#0F172A" }}>DE</option>
-                </NativeSelect.Field>
-              </NativeSelect.Root>
-            </Box>
+            {/* Language Selector Button */}
+            <Button
+              variant="outline"
+              size="xs"
+              h="32px"
+              px="2.5"
+              borderColor="navy.200"
+              color="navy.800"
+              bg="white"
+              _hover={{ bg: "teal.50", borderColor: "teal.500" }}
+              borderRadius="xs"
+              onClick={() => setLangModalOpen(true)}
+              title="Change language - Over 55 worldwide languages available"
+            >
+              <HStack spaceX="1.5">
+                <Globe size={14} className="text-teal-600" />
+                <Text fontSize="xs" fontWeight="bold">
+                  {activeLangObj ? `${activeLangObj.flag} ${activeLangObj.name}` : "🌐 English"}
+                </Text>
+                <ChevronDown size={12} className="text-slate-400" />
+              </HStack>
+            </Button>
 
             {/* Cart Icon */}
             <Link to="/shop">
@@ -284,10 +301,78 @@ export default function Header() {
                   </Button>
                 </Link>
               </HStack>
+
+              {/* Mobile Language Switcher Section */}
+              <Box pt="4" borderTop="1px solid" borderColor="navy.200">
+                <Flex justify="space-between" align="center" mb="2.5">
+                  <HStack spaceX="1.5">
+                    <Globe size={15} className="text-teal-600" />
+                    <Text fontSize="xs" fontWeight="bold" color="navy.800" textTransform="uppercase" letterSpacing="wider">
+                      Language: {activeLangObj?.flag} {activeLangObj?.name || "English"}
+                    </Text>
+                  </HStack>
+                  <Button
+                    size="xs"
+                    variant="subtle"
+                    bg="teal.50"
+                    color="teal.800"
+                    _hover={{ bg: "teal.100" }}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setLangModalOpen(true);
+                    }}
+                    borderRadius="xs"
+                    fontSize="10px"
+                    fontWeight="bold"
+                    px="2"
+                  >
+                    All 55+ Languages
+                  </Button>
+                </Flex>
+
+                {/* Quick 1-tap language pills */}
+                <Flex wrap="wrap" gap="1.5">
+                  {[
+                    { code: "en", name: "English", flag: "🇬🇧" },
+                    { code: "ig", name: "Igbo", flag: "🇳🇬" },
+                    { code: "yo", name: "Yoruba", flag: "🇳🇬" },
+                    { code: "ha", name: "Hausa", flag: "🇳🇬" },
+                    { code: "sw", name: "Swahili", flag: "🇰🇪" },
+                    { code: "fr", name: "Français", flag: "🇫🇷" },
+                    { code: "es", name: "Español", flag: "🇪🇸" },
+                    { code: "ar", name: "العربية", flag: "🇸🇦" },
+                  ].map((l) => (
+                    <Button
+                      key={l.code}
+                      size="xs"
+                      variant={currentLang === l.code ? "solid" : "outline"}
+                      bg={currentLang === l.code ? "teal.600" : "white"}
+                      color={currentLang === l.code ? "white" : "slate.700"}
+                      borderColor={currentLang === l.code ? "teal.600" : "slate.200"}
+                      fontSize="10px"
+                      px="2.5"
+                      py="1"
+                      borderRadius="full"
+                      onClick={async () => {
+                        await changeApplicationLanguage(l.code);
+                        setCurrentLang(l.code);
+                      }}
+                    >
+                      {l.flag} {l.name}
+                    </Button>
+                  ))}
+                </Flex>
+              </Box>
             </Flex>
           </Box>
         )}
       </Box>
+
+      {/* 55+ Worldwide Languages Selection Modal */}
+      <LanguageSelectorModal
+        isOpen={langModalOpen}
+        onClose={() => setLangModalOpen(false)}
+      />
     </Box>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HashRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import WhatsAppWidget from "./components/WhatsAppWidget";
 import "./i18n"; // Import i18n configure engine
+import { initGoogleTranslate } from "./services/translator";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,6 +20,10 @@ const queryClient = new QueryClient({
 });
 
 export default function App() {
+  useEffect(() => {
+    initGoogleTranslate();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <ChakraProvider value={system}>

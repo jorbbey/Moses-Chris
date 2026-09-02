@@ -97,27 +97,43 @@ export default function ResourceHub() {
           <Box gridColumn={{ base: "1", lg: "span 3" }} textAlign="left">
             <VStack align="stretch" spaceY="6">
               {/* Category selector */}
-              <Box>
+              <Box mb={{ base: "4", lg: "0" }}>
                 <Text fontSize="xs" fontWeight="bold" color="slate.400" uppercase="true" letterSpacing="wider" mb="3">
                   Filter by Category
                 </Text>
-                <VStack align="stretch" spaceY="1">
+                <Flex
+                  direction={{ base: "row", lg: "column" }}
+                  gap="2"
+                  overflowX={{ base: "auto", lg: "visible" }}
+                  pb={{ base: "2", lg: "0" }}
+                  css={{
+                    '&::-webkit-scrollbar': { display: 'none' },
+                    'msOverflowStyle': 'none',
+                    'scrollbarWidth': 'none'
+                  }}
+                >
                   {categories.map((cat) => (
                     <Button
                       key={cat}
                       size="xs"
                       variant="ghost"
-                      justifyContent="flex-start"
-                      color={activeCategory === cat ? "teal.600" : "slate.700"}
+                      justifyContent={{ base: "center", lg: "flex-start" }}
+                      flexShrink={0}
+                      color={activeCategory === cat ? "teal.700" : "slate.700"}
                       bg={activeCategory === cat ? "teal.50" : "transparent"}
+                      border="1px solid"
+                      borderColor={activeCategory === cat ? "teal.300" : "slate.200"}
                       fontWeight={activeCategory === cat ? "bold" : "medium"}
+                      borderRadius={{ base: "full", lg: "xs" }}
+                      px={{ base: "3.5", lg: "3" }}
+                      py="1.5"
                       onClick={() => { setActiveCategory(cat); setActiveTag(null); }}
-                      _hover={{ bg: "slate.100" }}
+                      _hover={{ bg: "teal.100/50" }}
                     >
                       {cat}
                     </Button>
                   ))}
-                </VStack>
+                </Flex>
               </Box>
 
               {/* Tags Cloud Filter */}

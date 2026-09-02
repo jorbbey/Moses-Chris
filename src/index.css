@@ -52,3 +52,45 @@ body {
     display: none !important;
   }
 }
+
+/* Seamless Google Translate Styling - Hide intrusive Google banner & tooltips */
+.goog-te-banner-frame {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+.goog-tooltip {
+  display: none !important;
+}
+
+.goog-tooltip:hover {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+#goog-gt-tt {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+/* Hide default Google Translate element but keep functional */
+#google_translate_element {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
@@ -24,7 +24,15 @@ import {
   Heart,
   ChevronDown,
   ExternalLink,
+  Globe,
 } from "lucide-react";
+import LanguageSelectorModal from "./LanguageSelectorModal";
+import {
+  getStoredLanguage,
+  subscribeLanguageChange,
+  changeApplicationLanguage,
+} from "../services/translator";
+import { getLanguageByCode } from "../data/languages";
 
 const TikTokIcon = ({ size = 16, className = "" }: { size?: number; className?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -48,6 +56,16 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [showFbMenu, setShowFbMenu] = useState(false);
+  const [langModalOpen, setLangModalOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState<string>(getStoredLanguage());
+
+  useEffect(() => {
+    return subscribeLanguageChange((newLang) => {
+      setCurrentLang(newLang);
+    });
+  }, []);
+
+  const activeLang = getLanguageByCode(currentLang);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -348,7 +366,92 @@ export default function Footer() {
           </SimpleGrid>
         </Box>
 
-        <Box pt="6" borderTop="1px solid" borderColor="slate.800" textAlign="center">
+        {/* Global Multi-Language Translation Strip */}
+        <Box
+          mt="8"
+          pt="6"
+          pb="4"
+          borderTop="1px solid"
+          borderColor="slate.800"
+          borderBottom="1px solid"
+        >
+          <Flex
+            direction={{ base: "column", lg: "row" }}
+            align={{ base: "flex-start", lg: "center" }}
+            justify="space-between"
+            gap="4"
+          >
+            <HStack spaceX="3">
+              <Box p="2" bg="teal.900/60" borderRadius="xs" color="teal.400" border="1px solid" borderColor="teal.700/50">
+                <Globe size={18} />
+              </Box>
+              <Box>
+                <HStack spaceX="2">
+                  <Text fontSize="xs" fontWeight="bold" color="white" textTransform="uppercase" letterSpacing="wider">
+                    Worldwide Languages & Native Dialects (55+ Supported)
+                  </Text>
+                  <Badge bg="teal.600" color="white" fontSize="9px" px="1.5">
+                    Live
+                  </Badge>
+                </HStack>
+                <Text fontSize="11px" color="slate.400">
+                  Current Language: <strong className="text-teal-300">{activeLang?.flag} {activeLang?.name || "English"} ({currentLang.toUpperCase()})</strong>
+                </Text>
+              </Box>
+            </HStack>
+
+            <HStack wrap="wrap" gap="1.5">
+              {[
+                { code: "en", name: "English", flag: "🇬🇧" },
+                { code: "ig", name: "Igbo", flag: "🇳🇬" },
+                { code: "yo", name: "Yoruba", flag: "🇳🇬" },
+                { code: "ha", name: "Hausa", flag: "🇳🇬" },
+                { code: "sw", name: "Swahili", flag: "🇰🇪" },
+                { code: "fr", name: "Français", flag: "🇫🇷" },
+                { code: "es", name: "Español", flag: "🇪🇸" },
+                { code: "ar", name: "العربية", flag: "🇸🇦" },
+              ].map((item) => (
+                <Button
+                  key={item.code}
+                  size="xs"
+                  variant={currentLang === item.code ? "solid" : "outline"}
+                  bg={currentLang === item.code ? "teal.600" : "slate.800"}
+                  color={currentLang === item.code ? "white" : "slate.300"}
+                  borderColor={currentLang === item.code ? "teal.600" : "slate.700"}
+                  _hover={{ bg: currentLang === item.code ? "teal.500" : "slate.700", color: "white" }}
+                  borderRadius="xs"
+                  fontSize="11px"
+                  px="2.5"
+                  py="1"
+                  onClick={async () => {
+                    await changeApplicationLanguage(item.code);
+                    setCurrentLang(item.code);
+                  }}
+                >
+                  {item.flag} {item.name}
+                </Button>
+              ))}
+
+              <Button
+                size="xs"
+                variant="solid"
+                bg="teal.600"
+                color="white"
+                _hover={{ bg: "teal.500" }}
+                borderRadius="xs"
+                fontSize="11px"
+                fontWeight="bold"
+                px="3"
+                py="1"
+                onClick={() => setLangModalOpen(true)}
+              >
+                + View All 55+ Languages
+              </Button>
+            </HStack>
+          </Flex>
+        </Box>
+
+        <Box pt="6" textAlign="center">
           <Text fontSize="xs" color="slate.500">
             © {new Date().getFullYear()} Moses Chris Platform Ecosystem. All Rights Reserved. Built as an enterprise health portal.
           </Text>
@@ -360,6 +463,12 @@ export default function Footer() {
           </HStack>
         </Box>
       </Box>
+
+      {/* 55+ Worldwide Languages Modal */}
+      <LanguageSelectorModal
+        isOpen={langModalOpen}
+        onClose={() => setLangModalOpen(false)}
+      />
     </Box>
   );
 }

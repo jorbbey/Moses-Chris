@@ -201,6 +201,206 @@ const resources = {
         training: "Workshops & Kapazitätsaufbau"
       }
     }
+  },
+  ig: {
+    translation: {
+      nav: {
+        home: "Ụlọ",
+        about: "Maka Anyị",
+        services: "Ọrụ Anyị",
+        academy: "Ụlọ Akwụkwọ",
+        resources: "Akụrụngwa",
+        books: "Akwụkwọ",
+        shop: "Ụlọ Ahịa",
+        appointments: "Nkwurịta Okwu",
+        blog: "Blọọgụ",
+        contact: "Kpọtụrụ Anyị",
+        dashboard: "Ogige Ozi"
+      },
+      hero: {
+        tagline: "Anyị na-eche banyere gị",
+        sub: "Imegharị ahụike ọha, ọdịmma uche, nchedo ụmụaka na nkwado megide ime ihe ike n'ụlọ",
+        desc: "Moses Chris bụ Onye edemede, Onye na-ahụ maka ọrịa (Epidemiologist), Onye ndụmọdụ ahụike ọha, na Onye na-akwado ikike mmadụ.",
+        cta_book: "Debe Oge Nzukọ",
+        cta_academy: "Chọpụta Ụlọ Akwụkwọ",
+        cta_contact: "Kpọtụrụ Moses"
+      },
+      stats: {
+        certificates: "Asambodo & Nzere",
+        awards: "Ihe Nrite Mba Nile",
+        cases: "Okwu Ikpe Dị Mma E Doziri"
+      },
+      services: {
+        title: "Ọkachamara Ọrụ",
+        subtitle: "Ndụmọdụ mba ụwa na nkwado ọmiko na ngalaba dị mkpa",
+        epidemiology: "Ọrịa Na-efe Efe & Nchọpụta",
+        mental_health: "Ndụmọdụ Ahụike Uche",
+        domestic_violence: "Nkwado Ihe Ike n'Ụlọ",
+        maternal_health: "Ahụike Nne & Nwa",
+        coaching: "Ọzụzụ & Ndụmọdụ",
+        training: "Ọmụmụ Ihe & Mwulite Ike"
+      }
+    }
+  },
+  yo: {
+    translation: {
+      nav: {
+        home: "Ile",
+        about: "Nipa Wa",
+        services: "Awọn Iṣẹ",
+        academy: "Ile-Ẹkọ",
+        resources: "Awọn Ohun Elo",
+        books: "Awọn Iwe",
+        shop: "Ile-Itaja",
+        appointments: "Ipade",
+        blog: "Bulọọgi",
+        contact: "Kan Si Wa",
+        dashboard: "Pẹpẹ Iṣakoso"
+      },
+      hero: {
+        tagline: "A Bikita Nipa Rẹ",
+        sub: "Ṣiṣe Atunṣe Ilera Ara Ilu, Ilera Ọpọlọ, Idaabobo Ọmọde ati Atilẹyin Iwa-ipa ninu Ile",
+        desc: "Moses Chris jẹ Onkọwe, Onimọ-jinlẹ nipa Arun (Epidemiologist), Oludamoran Ilera, ati Olugbeja Awọn Eto Eda Eniyan.",
+        cta_book: "Iwe Ipade",
+        cta_academy: "Ṣawari Ile-Ẹkọ",
+        cta_contact: "Kan Si Moses"
+      },
+      stats: {
+        certificates: "Awọn Iwe-ẹri & Awọn Ẹri",
+        awards: "Awọn Ebun Agbaye",
+        cases: "Awọn Ọran Ti A Yanju"
+      },
+      services: {
+        title: "Imọye Ọjọgbọn",
+        subtitle: "Ijumọsọrọ agbaye ati atilẹyin aanu ni awọn agbegbe pataki",
+        epidemiology: "Ajakale & Iwadi Arun",
+        mental_health: "Igbaninimoran Ilera Ọpọlọ",
+        domestic_violence: "Atilẹyin Iwa-ipa Ile",
+        maternal_health: "Ilera Iya ati Ọmọ",
+        coaching: "Ikẹkọ & Ijumọsọrọ",
+        training: "Idanileko & Idagbasoke Agbara"
+      }
+    }
+  },
+  ha: {
+    translation: {
+      nav: {
+        home: "Gida",
+        about: "Game da Mu",
+        services: "Ayyuka",
+        academy: "Kwalejin Ilimi",
+        resources: "Kayan Aiki",
+        books: "Littattafai",
+        shop: "Shago",
+        appointments: "Alƙawari",
+        blog: "Shafin Yanar Gizo",
+        contact: "Tuntube Mu",
+        dashboard: "Gidan Gudanarwa"
+      },
+      hero: {
+        tagline: "Muna Kula da Ku",
+        sub: "Fassara Lafiyar Jama'a, Lafiyar Hankali, Kariyar Yara da Tallafin Rikicin Gida",
+        desc: "Moses Chris marubuci ne, masanin ilimin cututtuka, mai ba da shawara kan lafiyar jama'a, kuma mai fafutukar kare hakkin bil'adama.",
+        cta_book: "Yanke Alƙawari",
+        cta_academy: "Bincika Kwaleji",
+        cta_contact: "Tuntubi Moses"
+      },
+      stats: {
+        certificates: "Takaddun Shaida & Cancanta",
+        awards: "Kyaututtukan Duniya",
+        cases: "Korafe-korafe da aka Sasanta"
+      },
+      services: {
+        title: "Kwarewar Kwarewa",
+        subtitle: "Shawara ta duniya da tallafi mai tausayi a bangarori masu mahimmanci",
+        epidemiology: "Cutar Kwayar Cutar & Cututtuka",
+        mental_health: "Shawarar Lafiyar Hankali",
+        domestic_violence: "Tallafin Rikicin Cikin Gida",
+        maternal_health: "Lafiyar Uwa da Yaro",
+        coaching: "Koyarwa & Shawara",
+        training: "Bita & Gina Ƙarfin Aiki"
+      }
+    }
+  },
+  sw: {
+    translation: {
+      nav: {
+        home: "Mwanzo",
+        about: "Kutuhusu",
+        services: "Huduma",
+        academy: "Chuo",
+        resources: "Rasilimali",
+        books: "Vitabu",
+        shop: "Duka",
+        appointments: "Miadi",
+        blog: "Blogu",
+        contact: "Wasiliana Nasi",
+        dashboard: "Dashibodi"
+      },
+      hero: {
+        tagline: "Tunakujali Wewe",
+        sub: "Kufafanua Upya Afya ya Umma, Afya ya Akili, Ulinzi wa Mtoto na Ukatili wa Majumbani",
+        desc: "Moses Chris ni Mwandishi, Mtaalamu wa Magonjwa ya Mlipuko (Epidemiologist), Mshauri wa Afya ya Umma, na Mtetezi wa Haki za Kibinadamu.",
+        cta_book: "Weka Miadi",
+        cta_academy: "Gundua Chuo",
+        cta_contact: "Wasiliana na Moses"
+      },
+      stats: {
+        certificates: "Vyeti & Sifa za Kitaaluma",
+        awards: "Tuzo za Kimataifa",
+        cases: "Kesi Zilizotatuliwa za Umma na Kibinafsi"
+      },
+      services: {
+        title: "Utaalamu wa Kitaaluma",
+        subtitle: "Ushauri wa kimataifa na msaada wa huruma katika nyanja muhimu",
+        epidemiology: "Epidemiyolojia & Magonjwa ya Mlipuko",
+        mental_health: "Ushauri wa Afya ya Akili",
+        domestic_violence: "Msaada wa Ukatili wa Majumbani",
+        maternal_health: "Afya ya Mama na Mtoto",
+        coaching: "Ukufunzi & Ushauri",
+        training: "Warsha & Kujenga Uwezo"
+      }
+    }
+  },
+  ar: {
+    translation: {
+      nav: {
+        home: "الرئيسية",
+        about: "عن المنصة",
+        services: "الخدمات",
+        academy: "الأكاديمية",
+        resources: "الموارد",
+        books: "الكتب",
+        shop: "المتجر",
+        appointments: "المواعيد",
+        blog: "المدونة",
+        contact: "اتصل بنا",
+        dashboard: "لوحة التحكم"
+      },
+      hero: {
+        tagline: "نحن نهتم بك",
+        sub: "إعادة صياغة الصحة العامة، الصحة النفسية، حماية الطفل ودعم ضحايا العنف المنزلي",
+        desc: "موسى كريس مؤلف، خبير وبائيات، مستشار صحة عامة، ومرشد نفسي ومدافع عن حقوق الإنسان.",
+        cta_book: "احجز موعداً",
+        cta_academy: "استكشف الأكاديمية",
+        cta_contact: "تواصل مع موسى"
+      },
+      stats: {
+        certificates: "الشهادات والاعتمادات",
+        awards: "جوائز عالمية",
+        cases: "قضايا عامة وخاصة تم حلها"
+      },
+      services: {
+        title: "الخبرة المهنية",
+        subtitle: "استشارات عالمية ودعم إنساني في مجالات حاسمة",
+        epidemiology: "علم الأوبئة والتحقيقات الصحية",
+        mental_health: "الإرشاد النفسي والصحة النفسية",
+        domestic_violence: "دعم ضحايا العنف الأسري",
+        maternal_health: "صحة الأم والطفل",
+        coaching: "التدريب والاستشارات",
+        training: "ورش العمل وبناء القدرات"
+      }
+    }
   }
 };
 
