@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { MONTHLY_ARCHIVES } from "../data/articles";
 import {
   Box,
   Flex,
@@ -53,6 +54,8 @@ const instagramUrl = "https://www.instagram.com/chris_mosesofficial?igsh=N3NqOTh
 
 export default function Footer() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [selectedArchiveMonth, setSelectedArchiveMonth] = useState("");
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [showFbMenu, setShowFbMenu] = useState(false);
@@ -78,7 +81,7 @@ export default function Footer() {
   return (
     <Box as="footer" bg="navy.800" color="slate.400" pt="10" pb="6" borderTop="1px solid" borderColor="navy.200">
       <Box w="100%" px={{ base: "4", md: "10" }}>
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap="10" mb="10">
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 5 }} gap="8" mb="10">
           {/* Brand Presentation */}
           <VStack align="flex-start" spaceY="4">
             <Box>
@@ -211,6 +214,59 @@ export default function Footer() {
               <Link to="/services"><Text fontSize="sm" _hover={{ color: "teal.400" }}>Domestic Violence Safety Advocacy</Text></Link>
               <Link to="/services"><Text fontSize="sm" _hover={{ color: "teal.400" }}>Maternal & Pediatric Wellness</Text></Link>
               <Link to="/academy"><Text fontSize="sm" _hover={{ color: "teal.400" }}>Incident Command Training</Text></Link>
+            </VStack>
+          </VStack>
+
+          {/* Monthly Archives Widget (as on moseschris.com) */}
+          <VStack align="flex-start" spaceY="3">
+            <Box fontSize="md" fontWeight="bold" color="white" position="relative" pb="2">
+              Archives
+              <Box position="absolute" bottom="0" left="0" w="40px" h="2px" bg="teal.600" />
+            </Box>
+            <Text fontSize="xs" color="slate.300">
+              Browse all 228 scholarly articles & publications by month:
+            </Text>
+            <Box w="full" position="relative">
+              <select
+                id="archives-dropdown-footer"
+                name="archive-dropdown"
+                aria-label="Select Monthly Archive"
+                className="w-full bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded px-3 py-2 pr-8 focus:outline-none focus:border-teal-500 cursor-pointer"
+                value={selectedArchiveMonth}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setSelectedArchiveMonth(val);
+                  if (val) {
+                    navigate(`/blog?month=${val}`);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                }}
+              >
+                <option value="">Select Month</option>
+                {MONTHLY_ARCHIVES.map((arch) => (
+                  <option key={arch.key} value={arch.key}>
+                    {arch.label} ({arch.count})
+                  </option>
+                ))}
+              </select>
+            </Box>
+            <VStack align="flex-start" spaceY="1" w="full" pt="1">
+              <Text fontSize="10px" color="teal.400" fontWeight="bold" uppercase="true" letterSpacing="wider">
+                Recent Archives
+              </Text>
+              {MONTHLY_ARCHIVES.slice(0, 4).map((arch) => (
+                <Link
+                  key={arch.key}
+                  to={`/blog?month=${arch.key}`}
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="text-xs text-slate-300 hover:text-teal-400 flex items-center justify-between w-full"
+                >
+                  <span>{arch.label}</span>
+                  <span className="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">
+                    {arch.count}
+                  </span>
+                </Link>
+              ))}
             </VStack>
           </VStack>
 

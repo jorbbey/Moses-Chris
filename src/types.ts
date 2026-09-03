@@ -65,17 +65,36 @@ export interface Appointment {
   status: "confirmed" | "completed" | "cancelled";
 }
 
+export interface ArchiveMonth {
+  key: string;
+  label: string;
+  year: number;
+  month: number;
+  count: number;
+}
+
 export interface BlogPost {
   id: string;
+  wpId?: number;
   title: string;
+  slug?: string;
   summary: string;
   content: string;
-  category: "Public Health" | "Mental Health" | "Domestic Violence" | "Child Welfare";
+  contentHtml?: string;
+  category: string;
   publishedAt: string;
   readTime: string;
   image: string;
   likes: number;
   comments: Comment[];
+  monthKey?: string;
+  monthLabel?: string;
+  year?: number;
+  month?: number;
+  link?: string;
+  author?: string;
+  authorTitle?: string;
+  sourceUrl?: string;
 }
 
 export interface Comment {

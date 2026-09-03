@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { Product, Course, Appointment, BlogPost, ResourceInfo } from "../types";
+import { ALL_MOSES_ARTICLES } from "../data/articles";
 
 interface PlatformState {
   // Store Data
@@ -335,48 +336,7 @@ const initialResources: ResourceInfo[] = [
   }
 ];
 
-const initialBlogPosts: BlogPost[] = [
-  {
-    id: "post-1",
-    title: "The Interface of Mental Health and Disease Outbreak Response",
-    summary: "As an epidemiologist and counsellor, I investigate how infectious crises amplify traumatic feedback loops in local populations and how response systems must integrate psych-first models.",
-    content: "During public health emergencies, panic often spreads faster than pathogens. The fear of isolation, the loss of financial autonomy, and bereavement create a fertile environment for intense anxiety, depression, and post-traumatic stress. Integrating clinical mental support directly within active medical triages is not merely a supplementary luxury; it is crucial to securing societal cooperation, compliance with biosafety protocols, and eventual post-epidemic revitalization. This paper documents five real-world case reviews...",
-    category: "Public Health",
-    publishedAt: "2026-05-18",
-    readTime: "6 mins read",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=600",
-    likes: 42,
-    comments: [
-      { author: "Dr. Sarah Jenkins", text: "Brilliant insights! Medical-clinical integration is severely underutilized in municipal responses.", date: "2026-05-19" }
-    ]
-  },
-  {
-    id: "post-2",
-    title: "Recognizing Early Warning Signs of Coercive Control in Relationships",
-    summary: "Domestic abuse goes far beyond physical violence. Identifying systematic control and micro-regulation vectors is crucial for prevention and immediate crisis safety planning.",
-    content: "Coercive control functions as a serial capture of an individual's personal sovereignty. Perpetrators systematically restrict the victim's social affiliations, access to household finance, professional work environments, and mobile communications, establishing an omniscient micro-regulative dynamic. For therapists, advocates, and friends, identifying these non-physical micro-signals at early stages is central. Let's list the core behavioral indicators...",
-    category: "Domestic Violence",
-    publishedAt: "2026-05-22",
-    readTime: "8 mins read",
-    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600",
-    likes: 56,
-    comments: [
-      { author: "Evelyn Carter", text: "This article saved my daughter from an extremely dangerous situation. Thank you, Moses.", date: "2026-05-23" }
-    ]
-  },
-  {
-    id: "post-3",
-    title: "Maternal Health Disparities in Underserved Municipal Jurisdictions",
-    summary: "An analytical study investigating neonatal care deficits, nutrition tracking, and localized advocacy models designed to suppress infant mortality margins.",
-    content: "Maternal wellness remains a prime metric of societal advancement. In municipal sectors where prenatal education is restricted and clinical hubs are geographically scattered, toddler wellness indices drops dramatically. By forming localized community taskforces and implementing robust mobile monitoring protocols, we can reverse maternal mortality rates. In this entry we audit empirical strategies currently tested on the ground.",
-    category: "Child Welfare",
-    publishedAt: "2026-05-29",
-    readTime: "11 mins read",
-    image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=600",
-    likes: 89,
-    comments: []
-  }
-];
+const initialBlogPosts: BlogPost[] = ALL_MOSES_ARTICLES;
 
 const initialAppointments: Appointment[] = [
   {
