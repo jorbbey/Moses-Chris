@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+// Deployment trigger for GitHub Actions workflow test
 import { HashRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
