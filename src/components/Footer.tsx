@@ -517,6 +517,17 @@ export default function Footer() {
               Committed to Universal Care, Epidemic Defense, and Human Resilience.
             </Text>
           </HStack>
+          <Text fontSize="xs" color="slate.500" mt="2">
+            Powered by{" "}
+            <a
+              href="https://jorbbey.com.ng"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-teal-400 hover:text-teal-300 font-medium underline underline-offset-2 transition-colors"
+            >
+              Jorbbey
+            </a>
+          </Text>
         </Box>
       </Box>
 
